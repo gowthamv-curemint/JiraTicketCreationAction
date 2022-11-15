@@ -1,26 +1,21 @@
 name: run main.py
+#on:
+#    workflow_call:
+#
+runs:
+  using: "composite"
+  - name: checkout repo content
+    uses: actions/checkout@v2 # checkout the repository content to github runner
 
-on:
-    workflow_call:
+  - name: setup python
+    uses: actions/setup-python@v4
+    with:
+      python-version: '3.9' # install the python version needed
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    runs:
-      using: "composite"
-      steps:
-        - name: checkout repo content
-          uses: actions/checkout@v2 # checkout the repository content to github runner
+  - name: install python packages
+    run: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
 
-        - name: setup python
-          uses: actions/setup-python@v4
-          with:
-            python-version: '3.9' # install the python version needed
-
-        - name: install python packages
-          runs: |
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
-
-        - name: execute py script # run main.py
-          run: python main.py
+  - name: execute py script # run main.py
+    run: python main.py
