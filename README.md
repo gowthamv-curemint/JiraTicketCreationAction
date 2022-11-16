@@ -36,5 +36,8 @@ job:
           JIRA_ISSUE_LINK: ${{ ISSUE_LINK }} # Issue to be linked with the new ticket
           
 ```
+### References
 
+https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions
 
